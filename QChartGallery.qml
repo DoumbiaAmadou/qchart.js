@@ -15,6 +15,7 @@
 import QtQuick 2.0
 
 import "."
+
 import "QChart.js"        as Charts
 import "QChartGallery.js" as ChartsData
 
@@ -109,68 +110,68 @@ Rectangle {
     columns: 3;
     spacing: chart_spacing;
 
-    Chart {
+    QChart {
       id: chart_line;
       width: chart_width;
       height: chart_height;
       chartAnimated: true;
       chartAnimationEasing: Easing.InOutElastic;
-      chartAnimationDuration: 2000;
+      chartAnimationDuration: 200;
       chartData: ChartsData.ChartLineData;
       chartType: Charts.ChartType.LINE;
     }
 
-    Chart {
+    QChart {
       id: chart_polar;
       width: chart_width;
       height: chart_height;
       chartAnimated: true;
       chartAnimationEasing: Easing.InBounce;
-      chartAnimationDuration: 2000;
+      chartAnimationDuration: 200;
       chartData: ChartsData.ChartPolarData;
       chartType: Charts.ChartType.POLAR;
     }
 
-    Chart {
+    QChart {
       id: chart_radar;
       width: chart_width;
       height: chart_height;
       chartAnimated: true;
       chartAnimationEasing: Easing.OutBounce;
-      chartAnimationDuration: 2000;
+      chartAnimationDuration: 200;
       chartData: ChartsData.ChartRadarData;
       chartType: Charts.ChartType.RADAR;
     }
 
-    Chart {
+    QChart {
       id: chart_pie;
       width: chart_width;
       height: chart_height;
       chartAnimated: true;
       chartAnimationEasing: Easing.Linear;
-      chartAnimationDuration: 2000;
+      chartAnimationDuration: 200;
       chartData: ChartsData.ChartPieData;
       chartType: Charts.ChartType.PIE;
     }
 
-    Chart {
+    QChart {
       id: chart_bar;
       width: chart_width;
       height: chart_height;
       chartAnimated: true;
       chartAnimationEasing: Easing.OutBounce;
-      chartAnimationDuration: 2000;
+      chartAnimationDuration: 200;
       chartData: ChartsData.ChartBarData;
       chartType: Charts.ChartType.BAR;
     }
 
-    Chart {
+    QChart {
       id: chart_doughnut;
       width: chart_width;
       height: chart_height;
       chartAnimated: true;
       chartAnimationEasing: Easing.OutElastic;
-      chartAnimationDuration: 2000;
+      chartAnimationDuration: 200;
       chartData: ChartsData.ChartDoughnutData;
       chartType: Charts.ChartType.DOUGHNUT;
     }

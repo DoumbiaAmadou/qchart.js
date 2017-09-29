@@ -98,7 +98,7 @@ var ChartPieData = [{
 // /////////////////////////////////////////////////////////////////
 
 var ChartDoughnutData = [{
-    value: 30,
+    value: 500,
     color: "#F7464A"
  }, {
     value: 50,
