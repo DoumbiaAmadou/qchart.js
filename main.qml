@@ -37,6 +37,7 @@ ApplicationWindow {
     }
 
     Rectangle {
+        id: rectangle1
 
       Component.onCompleted: console.log("azecf,co,") ;
       color: "#ffffff";
@@ -110,6 +111,10 @@ ApplicationWindow {
           id: chart_doughnut;
           width: parent.width*0.8;
           height: parent.height*0.8;
+          anchors.verticalCenterOffset: 0
+          anchors.horizontalCenterOffset: 0
+          anchors.horizontalCenter: parent.horizontalCenter
+          anchors.verticalCenter: parent.verticalCenter
           chartAnimated: true;
           chartAnimationEasing: Easing.OutElastic;
           chartAnimationDuration: 2000;

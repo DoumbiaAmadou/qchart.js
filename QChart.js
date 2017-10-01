@@ -711,8 +711,10 @@ var Chart = function(canvas, context) {
 
 
         var segmentTotal = 0;
-        var doughnutRadius = Min([height/(2*data.length),width/(2*data.length)]) - 5;
-        var cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
+        var cutoutRadius = 40;
+        var range =(Min([height/(2),width/(2)]) - 5-cutoutRadius)/(data.length+1);
+        var doughnutRadius =cutoutRadius+ range ;
+        //doughnutRadius * (config.percentageInnerCutout/100);
 
         // /////////////////////////////////////////////////////////////////
         // initialisation
@@ -787,8 +789,9 @@ var Chart = function(canvas, context) {
                     }
                     cumulativeAngle += segmentAngle;
                     }
-                    doughnutRadius*=2;
-                    cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
+                    cutoutRadius =doughnutRadius ;
+                    doughnutRadius+=range;
+//                    cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
 
 
             }
