@@ -739,8 +739,8 @@ var Chart = function(canvas, context) {
 
         function drawDoughnutSegments (animationDecimal) {
 
-            var cumulativeAngle = -Math.PI/2,
-
+//            var cumulativeAngle = -Math.PI/2,
+              var cumulativeAngle = 0,
             scaleAnimation = 1,
             rotateAnimation = 1;
 
@@ -766,6 +766,14 @@ var Chart = function(canvas, context) {
                 ctx.fillStyle = data[i].color;
                 ctx.fill();
 
+                //label
+//                var labelAngle = cumulativeAngle + (Math.PI*(pieData[i]/pieTotal));
+                var midledougnut = doughnutRadius-(doughnutRadius-cutoutRadius)/2
+                var setX = (width/2) + (Math.cos(cumulativeAngle+segmentAngle/2) * midledougnut);
+                var setY = height/2 +(Math.sin(cumulativeAngle+segmentAngle/2) * midledougnut);
+                ctx.fillStyle = "#ffffff";
+                ctx.font = '14px Calibri';
+                ctx.fillText(data[i].color,setX,setY);
                 if(config.segmentShowStroke) {
                     ctx.lineWidth = config.segmentStrokeWidth;
                     ctx.strokeStyle = config.segmentStrokeColor;

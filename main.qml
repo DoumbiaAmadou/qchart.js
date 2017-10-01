@@ -108,8 +108,8 @@ ApplicationWindow {
 
       QChart {
           id: chart_doughnut;
-          width: chart_width;
-          height: chart_height;
+          width: parent.width;
+          height: parent.height;
           chartAnimated: true;
           chartAnimationEasing: Easing.OutElastic;
           chartAnimationDuration: 2000;
