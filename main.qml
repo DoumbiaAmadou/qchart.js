@@ -108,12 +108,12 @@ ApplicationWindow {
 
       QChart {
           id: chart_doughnut;
-          width: parent.width;
-          height: parent.height;
+          width: parent.width*0.8;
+          height: parent.height*0.8;
           chartAnimated: true;
           chartAnimationEasing: Easing.OutElastic;
           chartAnimationDuration: 2000;
-          chartData: currentPie.pieList;
+          chartData: [currentPie.pieList,currentPie.pieList,currentPie.pieList];
           chartType: Charts.ChartType.DOUGHNUT;
       }
 

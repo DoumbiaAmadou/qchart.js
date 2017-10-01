@@ -97,23 +97,41 @@ var ChartPieData = [{
 // Doughnut Chart Data Sample
 // /////////////////////////////////////////////////////////////////
 
-var ChartDoughnutData = [{
-    value: 500,
-    color: "#F7464A",
-    childsPie: []
- }, {
-    value: 50,
-    color: "#E2EAE9"
- }, {
-    value: 100,
-    color: "#D4CCC5"
- }, {
-    value: 40,
-    color: "#949FB1"
- }, {
-    value: 120,
-    color: "#4D5360"
-}]
+var ChartDoughnutData =
+        [[{
+              value: 500,
+              color: "#F7464A",
+              childsPie: []
+          }, {
+              value: 50,
+              color: "#E2EAE9"
+          }, {
+              value: 100,
+              color: "#D4CCC5"
+          }, {
+              value: 40,
+              color: "#949FB1"
+          }, {
+              value: 120,
+              color: "#4D5360"
+          }],
+         [{
+                       value: 500,
+                       color: "#F7464A",
+                       childsPie: []
+                   }, {
+                       value: 50,
+                       color: "#E2EAE9"
+                   }, {
+                       value: 100,
+                       color: "#D4CCC5"
+                   }, {
+                       value: 40,
+                       color: "#949FB1"
+                   }, {
+                       value: 120,
+                       color: "#4D5360"
+                   }]]
 
 // /////////////////////////////////////////////////////////////////
 // Bar Chart Data Sample

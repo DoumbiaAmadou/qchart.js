@@ -13,21 +13,21 @@
 //
 
 var ChartType = {
-         BAR: 1,
+    BAR: 1,
     DOUGHNUT: 2,
-        LINE: 3,
-         PIE: 4,
-       POLAR: 5,
-       RADAR: 6
+    LINE: 3,
+    PIE: 4,
+    POLAR: 5,
+    RADAR: 6
 };
 
 var Chart = function(canvas, context) {
 
     var chart = this;
 
-// /////////////////////////////////////////////////////////////////
-// Polar area helper
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Polar area helper
+    // /////////////////////////////////////////////////////////////////
 
     this.PolarArea = function(data, options) {
 
@@ -66,9 +66,9 @@ var Chart = function(canvas, context) {
         return new PolarArea(data,config,context);
     };
 
-// /////////////////////////////////////////////////////////////////
-// Radar helper
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Radar helper
+    // /////////////////////////////////////////////////////////////////
 
     this.Radar = function(data,options) {
 
@@ -115,9 +115,9 @@ var Chart = function(canvas, context) {
         return new Radar(data,config,context);
     };
 
-// /////////////////////////////////////////////////////////////////
-// Pie helper
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Pie helper
+    // /////////////////////////////////////////////////////////////////
 
     this.Pie = function(data,options) {
 
@@ -138,9 +138,9 @@ var Chart = function(canvas, context) {
         return new Pie(data,config,context);
     };
 
-// /////////////////////////////////////////////////////////////////
-// Doughnut helper
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Doughnut helper
+    // /////////////////////////////////////////////////////////////////
 
     this.Doughnut = function(data,options) {
 
@@ -163,9 +163,9 @@ var Chart = function(canvas, context) {
 
     };
 
-// /////////////////////////////////////////////////////////////////
-// Line helper
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Line helper
+    // /////////////////////////////////////////////////////////////////
 
     this.Line = function(data,options) {
 
@@ -204,9 +204,9 @@ var Chart = function(canvas, context) {
         return new Line(data,config,context);
     }
 
-// /////////////////////////////////////////////////////////////////
-// Bar helper
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Bar helper
+    // /////////////////////////////////////////////////////////////////
 
     this.Bar = function(data,options) {
 
@@ -242,9 +242,9 @@ var Chart = function(canvas, context) {
         return new Bar(data,config,context);
     }
 
-// /////////////////////////////////////////////////////////////////
-// Polar Area implementation
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Polar Area implementation
+    // /////////////////////////////////////////////////////////////////
 
     var PolarArea = function(data,config,ctx) {
 
@@ -342,11 +342,11 @@ var Chart = function(canvas, context) {
                         ctx.fillStyle = config.scaleBackdropColor;
                         ctx.beginPath();
                         ctx.rect(
-                            Math.round(width/2 - textWidth/2 - config.scaleBackdropPaddingX),
-                            Math.round(height/2 - (scaleHop * (i + 1)) - config.scaleFontSize*0.5 - config.scaleBackdropPaddingY),
-                            Math.round(textWidth + (config.scaleBackdropPaddingX*2)),
-                            Math.round(config.scaleFontSize + (config.scaleBackdropPaddingY*2))
-                        );
+                                    Math.round(width/2 - textWidth/2 - config.scaleBackdropPaddingX),
+                                    Math.round(height/2 - (scaleHop * (i + 1)) - config.scaleFontSize*0.5 - config.scaleBackdropPaddingY),
+                                    Math.round(textWidth + (config.scaleBackdropPaddingX*2)),
+                                    Math.round(config.scaleFontSize + (config.scaleBackdropPaddingY*2))
+                                    );
                         ctx.fill();
                     }
                     ctx.textBaseline = "middle";
@@ -360,9 +360,9 @@ var Chart = function(canvas, context) {
 
             var startAngle = -Math.PI/2,
 
-            angleStep = (Math.PI*2)/data.length,
-            scaleAnimation = 1,
-            rotateAnimation = 1;
+                    angleStep = (Math.PI*2)/data.length,
+                    scaleAnimation = 1,
+                    rotateAnimation = 1;
 
             if (config.animation) {
                 if (config.animateScale) {
@@ -413,9 +413,9 @@ var Chart = function(canvas, context) {
         }
     }
 
-// /////////////////////////////////////////////////////////////////
-// Radar implementation
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Radar implementation
+    // /////////////////////////////////////////////////////////////////
 
     var Radar = function (data, config, ctx) {
 
@@ -557,11 +557,11 @@ var Chart = function(canvas, context) {
                         ctx.fillStyle = config.scaleBackdropColor;
                         ctx.beginPath();
                         ctx.rect(
-                            Math.round(- textWidth/2 - config.scaleBackdropPaddingX),     //X
-                            Math.round((-scaleHop * (i + 1)) - config.scaleFontSize*0.5 - config.scaleBackdropPaddingY),//Y
-                            Math.round(textWidth + (config.scaleBackdropPaddingX*2)), //Width
-                            Math.round(config.scaleFontSize + (config.scaleBackdropPaddingY*2)) //Height
-                        );
+                                    Math.round(- textWidth/2 - config.scaleBackdropPaddingX),     //X
+                                    Math.round((-scaleHop * (i + 1)) - config.scaleFontSize*0.5 - config.scaleBackdropPaddingY),//Y
+                                    Math.round(textWidth + (config.scaleBackdropPaddingX*2)), //Width
+                                    Math.round(config.scaleFontSize + (config.scaleBackdropPaddingY*2)) //Height
+                                    );
                         ctx.fill();
                     }
                     ctx.fillStyle = config.scaleFontColor;
@@ -635,9 +635,9 @@ var Chart = function(canvas, context) {
         }
     }
 
-// /////////////////////////////////////////////////////////////////
-// Pie implementation
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Pie implementation
+    // /////////////////////////////////////////////////////////////////
 
     var Pie = function(data,config,ctx) {
 
@@ -672,8 +672,8 @@ var Chart = function(canvas, context) {
 
             var cumulativeAngle = -Math.PI/2,
 
-            scaleAnimation = 1,
-            rotateAnimation = 1;
+                    scaleAnimation = 1,
+                    rotateAnimation = 1;
 
             if (config.animation) {
                 if (config.animateScale) {
@@ -703,14 +703,15 @@ var Chart = function(canvas, context) {
         }
     }
 
-// /////////////////////////////////////////////////////////////////
-// Doughnut implementation
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Doughnut implementation
+    // /////////////////////////////////////////////////////////////////
 
     var Doughnut = function(data,config,ctx) {
 
+
         var segmentTotal = 0;
-        var doughnutRadius = Min([height/2,width/2]) - 5;
+        var doughnutRadius = Min([height/(2*data.length),width/(2*data.length)]) - 5;
         var cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
 
         // /////////////////////////////////////////////////////////////////
@@ -719,8 +720,8 @@ var Chart = function(canvas, context) {
 
         this.init = function () {
 
-            for (var i=0; i<data.length; i++) {
-                segmentTotal += data[i].value;
+            for (var i=0; i<data[0].length; i++) {
+                segmentTotal += data[0][i].value;
             }
         }
 
@@ -739,10 +740,9 @@ var Chart = function(canvas, context) {
 
         function drawDoughnutSegments (animationDecimal) {
 
-//            var cumulativeAngle = -Math.PI/2,
-              var cumulativeAngle = 0,
-            scaleAnimation = 1,
-            rotateAnimation = 1;
+            //var cumulativeAngle = -Math.PI/2,
+            var scaleAnimation = 1,
+                    rotateAnimation = 1;
 
             if (config.animation) {
                 if (config.animateScale) {
@@ -752,46 +752,52 @@ var Chart = function(canvas, context) {
                     rotateAnimation = animationDecimal;
                 }
             }
+            for (var j=0; j<data.length; j++){
+                var cumulativeAngle =0 ;
+                for (var i=0; i<data[j].length; i++) {
+                    var segmentAngle = rotateAnimation * ((data[j][i].value/segmentTotal) * (Math.PI*2));
+                    ctx.beginPath();
+                    ctx.arc(width/2,height/2,scaleAnimation * doughnutRadius
+                            ,cumulativeAngle,cumulativeAngle + segmentAngle
+                            ,false);
+                    ctx.arc(width/2,height/2,scaleAnimation * cutoutRadius
+                            ,cumulativeAngle + segmentAngle
+                            ,cumulativeAngle,true);
+                    ctx.closePath();
+                    ctx.fillStyle = data[j][i].color;
+                    ctx.fill();
 
-            for (var i=0; i<data.length; i++) {
-                var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (Math.PI*2));
-                ctx.beginPath();
-                ctx.arc(width/2,height/2,scaleAnimation * doughnutRadius
-                        ,cumulativeAngle,cumulativeAngle + segmentAngle
-                        ,false);
-                ctx.arc(width/2,height/2,scaleAnimation * cutoutRadius
-                        ,cumulativeAngle + segmentAngle
-                        ,cumulativeAngle,true);
-                ctx.closePath();
-                ctx.fillStyle = data[i].color;
-                ctx.fill();
+                    //label
+                    //                var labelAngle = cumulativeAngle + (Math.PI*(pieData[i]/pieTotal));
+                    //                var midledougnut = doughnutRadius-(doughnutRadius-cutoutRadius)/2
+                    var midledougnut;
+                    if(Math.cos(cumulativeAngle+segmentAngle/2)>0)
+                        midledougnut = cutoutRadius+((doughnutRadius-cutoutRadius)*0.1);
+                    else
+                        midledougnut = doughnutRadius-((doughnutRadius-cutoutRadius)*0.1)
+                    var setX = (width/2) + (Math.cos(cumulativeAngle+segmentAngle/2) * midledougnut);
+                    var setY = height/2 +(Math.sin(cumulativeAngle+segmentAngle/2) * midledougnut);
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = '14px Calibri';
+                    ctx.fillText(data[j][i].color,setX,setY);
+                    if(config.segmentShowStroke) {
+                        ctx.lineWidth = config.segmentStrokeWidth;
+                        ctx.strokeStyle = config.segmentStrokeColor;
+                        ctx.stroke();
+                    }
+                    cumulativeAngle += segmentAngle;
+                    }
+                    doughnutRadius*=2;
+                    cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
 
-                //label
-//                var labelAngle = cumulativeAngle + (Math.PI*(pieData[i]/pieTotal));
-//                var midledougnut = doughnutRadius-(doughnutRadius-cutoutRadius)/2
-                var midledougnut;
-                if(Math.cos(cumulativeAngle+segmentAngle/2)>0)
-                     midledougnut = cutoutRadius+((doughnutRadius-cutoutRadius)*0.1);
-                else
-                     midledougnut = doughnutRadius-((doughnutRadius-cutoutRadius)*0.1)
-                var setX = (width/2) + (Math.cos(cumulativeAngle+segmentAngle/2) * midledougnut);
-                var setY = height/2 +(Math.sin(cumulativeAngle+segmentAngle/2) * midledougnut);
-                ctx.fillStyle = "#ffffff";
-                ctx.font = '14px Calibri';
-                ctx.fillText(data[i].color,setX,setY);
-                if(config.segmentShowStroke) {
-                    ctx.lineWidth = config.segmentStrokeWidth;
-                    ctx.strokeStyle = config.segmentStrokeColor;
-                    ctx.stroke();
-                }
-                cumulativeAngle += segmentAngle;
+
             }
         }
     }
 
-// /////////////////////////////////////////////////////////////////
-// Line implementation
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Line implementation
+    // /////////////////////////////////////////////////////////////////
 
     var Line = function(data,config,ctx) {
 
@@ -1057,9 +1063,9 @@ var Chart = function(canvas, context) {
         }
     }
 
-// /////////////////////////////////////////////////////////////////
-// Bar implementation
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Bar implementation
+    // /////////////////////////////////////////////////////////////////
 
     var Bar = function(data, config, ctx) {
 
@@ -1295,9 +1301,9 @@ var Chart = function(canvas, context) {
         }
     }
 
-// /////////////////////////////////////////////////////////////////
-// Helper functions
-// /////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////
+    // Helper functions
+    // /////////////////////////////////////////////////////////////////
 
     var clear = function(c) {
         c.clearRect(0, 0, width, height);
@@ -1413,21 +1419,21 @@ var Chart = function(canvas, context) {
 
     function tmpl(str, data) {
         var fn = !/\W/.test(str) ?
-            cache[str] = cache[str] ||
-            tmpl(document.getElementById(str).innerHTML) :
+                    cache[str] = cache[str] ||
+                    tmpl(document.getElementById(str).innerHTML) :
 
-        new Function("obj",
-                     "var p=[],print=function() {p.push.apply(p,arguments);};" +
-                     "with(obj) {p.push('" +
-                     str
-                     .replace(/[\r\t\n]/g, " ")
-                     .split("<%").join("\t")
-                     .replace(/((^|%>)[^\t]*)'/g, "$1\r")
-                     .replace(/\t=(.*?)%>/g, "',$1,'")
-                     .split("\t").join("');")
-                     .split("%>").join("p.push('")
-                     .split("\r").join("\\'")
-                     + "');}return p.join('');");
+                    new Function("obj",
+                                 "var p=[],print=function() {p.push.apply(p,arguments);};" +
+                                 "with(obj) {p.push('" +
+                                 str
+                                 .replace(/[\r\t\n]/g, " ")
+                                 .split("<%").join("\t")
+                                 .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+                                 .replace(/\t=(.*?)%>/g, "',$1,'")
+                                 .split("\t").join("');")
+                                 .split("%>").join("p.push('")
+                                 .split("\r").join("\\'")
+                                 + "');}return p.join('');");
 
         return data ? fn( data ) : fn;
     };
