@@ -66,9 +66,9 @@ Canvas {
 
       chart.init();
 
-//      if (chartAnimated)
-//          chartAnimator.start();
-//      else
+      if (chartAnimated)
+          chartAnimator.start();
+      else
           chartAnimationProgress = 100;
 
       chart.draw(chartAnimationProgress/100);

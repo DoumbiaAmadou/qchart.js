@@ -2,6 +2,7 @@ import QtQuick 2.5
 import "QChart.js"        as Charts
 import "QChartGallery.js" as ChartsData
 import QtQuick.Controls 1.4
+import Cpp 1.0
 
 ApplicationWindow {
     visible: true
@@ -9,11 +10,17 @@ ApplicationWindow {
     height: 480
     title: qsTr("Hello World")
 
-    property int chart_width: 300;
-    property int chart_height: 300;
-    property int chart_spacing: 20;
+    property int chart_width: width/3;
+    property int chart_height: height/3;
+    property int chart_spacing: 2;
     property int text_height: 80;
     property int row_height: 8;
+
+//    property int chart_width: 300;
+//    property int chart_height: 300;
+//    property int chart_spacing: 20;
+//    property int text_height: 80;
+//    property int row_height: 8;
 
     menuBar: MenuBar {
         Menu {
@@ -33,8 +40,9 @@ ApplicationWindow {
 
       Component.onCompleted: console.log("azecf,co,") ;
       color: "#ffffff";
-      width: chart_width*3 + 2*chart_spacing;
-      height: chart_height*2 + chart_spacing + 2*row_height + text_height;
+      anchors.fill: parent
+      //      width: chart_width*3 + 2*chart_spacing;
+      //      height: chart_height*2 + chart_spacing + 2*row_height + text_height;
 
     // /////////////////////////////////////////////////////////////////
     // Header
@@ -98,89 +106,100 @@ ApplicationWindow {
         }
       }
 
-    // /////////////////////////////////////////////////////////////////
-    // Body
-    // /////////////////////////////////////////////////////////////////
-
-      Grid {
-
-        id: layout;
-
-        x: 0;
-        y: 2*row_height + text_height;
-
-        width: parent.width;
-        height: parent.height - 2*row_height - text_height;
-
-        columns: 3;
-        spacing: chart_spacing;
-
-        QChart {
-          id: chart_line;
-          width: chart_width;
-          height: chart_height;
-          chartAnimated: true;
-          chartAnimationEasing: Easing.InOutElastic;
-          chartAnimationDuration: 2000;
-          chartData: ChartsData.ChartLineData;
-          chartType: Charts.ChartType.LINE;
-        }
-
-        QChart {
-          id: chart_polar;
-          width: chart_width;
-          height: chart_height;
-          chartAnimated: true;
-          chartAnimationEasing: Easing.InBounce;
-          chartAnimationDuration: 2000;
-          chartData: ChartsData.ChartPolarData;
-          chartType: Charts.ChartType.POLAR;
-        }
-
-        QChart {
-          id: chart_radar;
-          width: chart_width;
-          height: chart_height;
-          chartAnimated: true;
-          chartAnimationEasing: Easing.OutBounce;
-          chartAnimationDuration: 2000;
-          chartData: ChartsData.ChartRadarData;
-          chartType: Charts.ChartType.RADAR;
-        }
-
-        QChart {
-          id: chart_pie;
-          width: chart_width;
-          height: chart_height;
-          chartAnimated: true;
-          chartAnimationEasing: Easing.Linear;
-          chartAnimationDuration: 2000;
-          chartData: ChartsData.ChartPieData;
-          chartType: Charts.ChartType.PIE;
-        }
-
-        QChart {
-          id: chart_bar;
-          width: chart_width;
-          height: chart_height;
-          chartAnimated: true;
-          chartAnimationEasing: Easing.OutBounce;
-          chartAnimationDuration: 2000;
-          chartData: ChartsData.ChartBarData;
-          chartType: Charts.ChartType.BAR;
-        }
-
-        QChart {
+      QChart {
           id: chart_doughnut;
           width: chart_width;
           height: chart_height;
           chartAnimated: true;
           chartAnimationEasing: Easing.OutElastic;
           chartAnimationDuration: 2000;
-          chartData: ChartsData.ChartDoughnutData;
+          chartData: currentPie.pieList;
           chartType: Charts.ChartType.DOUGHNUT;
-        }
       }
+
+    // /////////////////////////////////////////////////////////////////
+    // Body
+    // /////////////////////////////////////////////////////////////////
+
+//      Grid {
+
+//        id: layout;
+
+//        x: 0;
+//        y: 2*row_height + text_height;
+
+//        width: parent.width;
+//        height: parent.height - 2*row_height - text_height;
+
+//        columns: 3;
+//        spacing: chart_spacing;
+
+//        QChart {
+//          id: chart_line;
+//          width: chart_width;
+//          height: chart_height;
+//          chartAnimated: true;
+//          chartAnimationEasing: Easing.InOutElastic;
+//          chartAnimationDuration: 2000;
+//          chartData: ChartsData.ChartLineData;
+//          chartType: Charts.ChartType.LINE;
+//        }
+
+//        QChart {
+//          id: chart_polar;
+//          width: chart_width;
+//          height: chart_height;
+//          chartAnimated: true;
+//          chartAnimationEasing: Easing.InBounce;
+//          chartAnimationDuration: 2000;
+//          chartData: ChartsData.ChartPolarData;
+//          chartType: Charts.ChartType.POLAR;
+//        }
+
+//        QChart {
+//          id: chart_radar;
+//          width: chart_width;
+//          height: chart_height;
+//          chartAnimated: true;
+//          chartAnimationEasing: Easing.OutBounce;
+//          chartAnimationDuration: 2000;
+//          chartData: ChartsData.ChartRadarData;
+//          chartType: Charts.ChartType.RADAR;
+//        }
+
+//        QChart {
+//          id: chart_pie;
+//          width: chart_width;
+//          height: chart_height;
+//          chartAnimated: true;
+//          chartAnimationEasing: Easing.Linear;
+//          chartAnimationDuration: 2000;
+//          chartData: ChartsData.ChartPieData;
+//          chartType: Charts.ChartType.PIE;
+//        }
+
+//        QChart {
+//          id: chart_bar;
+//          width: chart_width;
+//          height: chart_height;
+//          chartAnimated: true;
+//          chartAnimationEasing: Easing.OutBounce;
+//          chartAnimationDuration: 2000;
+//          chartData: ChartsData.ChartBarData;
+//          chartType: Charts.ChartType.BAR;
+//        }
+
+//        QChart {
+//          id: chart_doughnut;
+//          width: chart_width;
+//          height: chart_height;
+//          chartAnimated: true;
+//          chartAnimationEasing: Easing.OutElastic;
+//          chartAnimationDuration: 2000;
+//          chartData: ChartsData.ChartDoughnutData;
+//          chartType: Charts.ChartType.DOUGHNUT;
+//        }
+//      }
     }
 
 }
