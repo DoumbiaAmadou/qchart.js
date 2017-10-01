@@ -118,7 +118,7 @@ ApplicationWindow {
           chartAnimated: true;
           chartAnimationEasing: Easing.OutElastic;
           chartAnimationDuration: 2000;
-          chartData: [currentPie.pieList,currentPie.pieList,currentPie.pieList];
+          chartData: [currentPie.pieList,currentPie.pieListChild];
           chartType: Charts.ChartType.DOUGHNUT;
       }
 
