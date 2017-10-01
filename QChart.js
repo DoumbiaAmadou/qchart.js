@@ -768,7 +768,12 @@ var Chart = function(canvas, context) {
 
                 //label
 //                var labelAngle = cumulativeAngle + (Math.PI*(pieData[i]/pieTotal));
-                var midledougnut = doughnutRadius-(doughnutRadius-cutoutRadius)/2
+//                var midledougnut = doughnutRadius-(doughnutRadius-cutoutRadius)/2
+                var midledougnut;
+                if(Math.cos(cumulativeAngle+segmentAngle/2)>0)
+                     midledougnut = cutoutRadius+((doughnutRadius-cutoutRadius)*0.1);
+                else
+                     midledougnut = doughnutRadius-((doughnutRadius-cutoutRadius)*0.1)
                 var setX = (width/2) + (Math.cos(cumulativeAngle+segmentAngle/2) * midledougnut);
                 var setY = height/2 +(Math.sin(cumulativeAngle+segmentAngle/2) * midledougnut);
                 ctx.fillStyle = "#ffffff";
