@@ -706,14 +706,21 @@ var Chart = function(canvas, context) {
     // /////////////////////////////////////////////////////////////////
     // Doughnut implementation
     // /////////////////////////////////////////////////////////////////
-
+    
     var Doughnut = function(data,config,ctx) {
 
 
         var segmentTotal = 0;
         var cutoutRadius = 40;
-        var range =(Min([height/(2),width/(2)]) - 5-cutoutRadius)/(data.length+1);
+        var constcutouRaduis = 40;
+        var range =(Min([height/(2),width/(2)]) - 5-cutoutRadius)/(data.length);
         var doughnutRadius =cutoutRadius+ range ;
+
+//        console.log(range) ;
+//        console.log(cutoutRadius) ;
+//        console.log(doughnutRadius) ;
+
+
         //doughnutRadius * (config.percentageInnerCutout/100);
 
         // /////////////////////////////////////////////////////////////////
@@ -732,7 +739,7 @@ var Chart = function(canvas, context) {
         // /////////////////////////////////////////////////////////////////
 
         this.draw = function (progress) {
-
+             ctx.fillStyle = "#F2F2F2";
             clear(ctx);
 
             drawDoughnutSegments(progress);
@@ -757,44 +764,80 @@ var Chart = function(canvas, context) {
             for (var j=0; j<data.length; j++){
                 var cumulativeAngle =0 ;
                 for (var i=0; i<data[j].length; i++) {
-                    var segmentAngle = rotateAnimation * ((data[j][i].value/segmentTotal) * (Math.PI*2));
+                    var segmentAngle = rotateAnimation * ((data[j][i].value/(segmentTotal)) * (Math.PI*2));
+//                    if(segmentTotal===1)
+//                        segmentAngle=segmentAngle-1;
+//                    console.log("segmentotal "+segmentAngle);
+
                     ctx.beginPath();
                     ctx.arc(width/2,height/2,scaleAnimation * doughnutRadius
                             ,cumulativeAngle,cumulativeAngle + segmentAngle
                             ,false);
+//                    console.log(ctx)
                     ctx.arc(width/2,height/2,scaleAnimation * cutoutRadius
                             ,cumulativeAngle + segmentAngle
                             ,cumulativeAngle,true);
                     ctx.closePath();
                     ctx.fillStyle = data[j][i].color;
                     ctx.fill();
+                    /*!
+                     * save data in the
+                    */
+
+                    //
+                    data[j][i].xcenter =width/2
+                    data[j][i].ycenter =height/2
+                    data[j][i].angleStart =(360+cumulativeAngle*180/Math.PI) %360;
+                    data[j][i].anglesegement = (segmentAngle*360/(Math.PI*2));
+                    data[j][i].rayonMin =cutoutRadius ;
+                    data[j][i].rayonMax =doughnutRadius
 
                     //label
                     //                var labelAngle = cumulativeAngle + (Math.PI*(pieData[i]/pieTotal));
                     //                var midledougnut = doughnutRadius-(doughnutRadius-cutoutRadius)/2
                     var midledougnut;
-                    if(Math.cos(cumulativeAngle+segmentAngle/2)>0)
+//                    if(Math.cos(cumulativeAngle+segmentAngle/2)>0)
                         midledougnut = cutoutRadius+((doughnutRadius-cutoutRadius)*0.1);
-                    else
-                        midledougnut = doughnutRadius-((doughnutRadius-cutoutRadius)*0.1)
+//                    else
+//                        midledougnut = doughnutRadius-((doughnutRadius-cutoutRadius)*0.3)
+
+
+
                     var setX = (width/2) + (Math.cos(cumulativeAngle+segmentAngle/2) * midledougnut);
                     var setY = height/2 +(Math.sin(cumulativeAngle+segmentAngle/2) * midledougnut);
-                    ctx.fillStyle = "#ffffff";
-                    ctx.font = '14px Calibri';
-                    ctx.fillText(data[j][i].color,setX,setY);
+                    ctx.fillStyle = "#000000";
+                    ctx.font = '11px Calibri';
+//                    ctx.rotate(cumulativeAngle);
+                    ctx.save();
+                    ctx.translate( setX, setY );
+                    ctx.rotate( cumulativeAngle+segmentAngle/2 );
+
+                    ctx.fillText(data[j][i].label,0,0);
+                    ctx.restore();
+//                    ctx.fillText(data[j][i].label,setX,setY);
                     if(config.segmentShowStroke) {
                         ctx.lineWidth = config.segmentStrokeWidth;
                         ctx.strokeStyle = config.segmentStrokeColor;
                         ctx.stroke();
                     }
                     cumulativeAngle += segmentAngle;
-                    }
-                    cutoutRadius =doughnutRadius ;
-                    doughnutRadius+=range;
-//                    cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
+                }
+                cutoutRadius =doughnutRadius ;
+                doughnutRadius+=range;
+                //                    cutoutRadius = doughnutRadius * (config.percentageInnerCutout/100);
 
 
             }
+            ctx.beginPath();
+            ctx.fillStyle = "#F2F2F2"
+            ctx.arc(width/2,height/2 ,40
+                    ,0,Math.PI*2
+                    ,false);
+            ctx.closePath();
+//            ctx.fillStyle = ;
+            ctx.fill();
+
+
         }
     }
 
