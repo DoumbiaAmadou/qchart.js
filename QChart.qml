@@ -34,7 +34,87 @@ Canvas {
 // /////////////////////////////////////////////////////////////////
 // Callbacks
 // /////////////////////////////////////////////////////////////////
+  MouseArea {
+        id:mousearea
+        anchors.fill: parent
+        cursorShape:Qt.PointingHandCursor
+        onPositionChanged: canvas.requestPaint();
 
+        onPressed: {
+
+            //          var mousePosition = mouse.x / mousearea.width;
+
+//            console.log("onPressed : Mouse position  " + mouse.x +":"+mouse.y)
+            checkinside(mouse.x, mouse.y)
+
+        }
+        function checkinside(x, y){
+
+            for (var j=0; j<chartData.length; j++){
+                for (var i=0; i<chartData[j].length; i++) {
+                    //                   console.log("in loop ")
+                    isPieInside(x , y , chartData[j][i])
+                    //                      chartData[j][i].isSelected = true ;
+                }
+            }
+            requestPaint();
+        }
+        function isPieInside( xglobal, yglobal , pie){
+            //          console.log("AD") ;
+            var x = xglobal-pie.xcenter;
+            var y = yglobal-pie.ycenter;
+            var raduis = Math.sqrt((x*x)+(y*y));
+            var angle ;
+
+            angle  = Math.atan2(x,y)*180/Math.PI;
+            angle = (270+angle)  %360  ;
+            angle = 360 -angle;
+//            console.log("AD =>"+raduis  ) ;
+//            console.log("AD =>rayonMin"+pie.rayonMin  ) ;
+//            console.log("AD =>rayonMax"+pie.rayonMax  ) ;
+
+            if(angle>pie.angleStart && angle<(pie.angleStart+pie.anglesegement)
+                    && raduis>pie.rayonMin && raduis<pie.rayonMax){
+//                console.log("TTTTTTTT");
+//                console.log("AD =>angleStart "+pie.angleStart  ) ;
+//                console.log("AD =>anglesegement"+pie.anglesegement  ) ;
+//                console.log("AD =>"+raduis  ) ;
+//                console.log("AD =>"+angle) ;
+                pie.isSelected=!pie.isSelected;
+                requestPaint();
+            }
+
+
+        }
+        onReleased: {
+            var mousePosition = mouse.x / mousearea.width;
+            //console.log("onReleased :Mouse position  " + mouse.x +":"+mouse.y)
+
+        }
+    }
+    Rectangle{
+    id : controle
+     anchors.top : parent
+     anchors.left : parent.left
+     anchors.right : parent.right
+     height:  5
+     Flow{
+         Button{
+             z : 100
+             text : "Select ALL"
+             onClicked: selectclear(true);
+         }
+         Button{
+              text : "clear all ALL"
+               onClicked: selectclear(false);
+         }
+         Button{
+              text : "no action"
+         }
+     }
+
+    }
+ 
   onPaint: {
       var ctx = canvas.getContext("2d");
       /* Reset the canvas context to allow resize events to properly redraw
