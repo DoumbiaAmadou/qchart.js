@@ -706,8 +706,7 @@ var Chart = function(canvas, context) {
     // /////////////////////////////////////////////////////////////////
     // Doughnut implementation
     // /////////////////////////////////////////////////////////////////
-    
-    var Doughnut = function(data,config,ctx) {
+  var Doughnut = function(data,config,ctx) {
 
 
         var segmentTotal = 0;
@@ -840,6 +839,7 @@ var Chart = function(canvas, context) {
 
         }
     }
+
 
     // /////////////////////////////////////////////////////////////////
     // Line implementation
